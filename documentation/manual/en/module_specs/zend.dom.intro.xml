@@ -5,7 +5,7 @@
     
 
     <para>
-        <classname>Zend\Dom</classname> provides tools for working with <acronym>DOM</acronym>
+        The <classname>Zend\Dom</classname> component provides tools for working with <acronym>DOM</acronym>
         documents and structures. Currently, we offer <classname>Zend\Dom\Query</classname>, which
         provides a unified interface for querying <acronym>DOM</acronym> documents utilizing both
         XPath and <acronym>CSS</acronym> selectors.
