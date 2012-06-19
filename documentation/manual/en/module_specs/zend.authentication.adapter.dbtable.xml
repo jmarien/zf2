@@ -86,8 +86,10 @@
             </para>
 
             <programlisting language="php"><![CDATA[
+use Zend\Db\Adapter\Adapter as DbAdapter;
+
 // Create a SQLite database connection
-$dbAdapter = new Zend\Db\Adapter\Adapter(array(
+$dbAdapter = new DbAdapter(array(
                 'driver' => 'Pdo_Sqlite',
                 'database' => 'path/to/sqlite.db'
             ));
@@ -119,16 +121,17 @@ $dbAdapter->query($sqlInsert);
             </para>
 
             <programlisting language="php"><![CDATA[
+use Zend\Authentication\Adapter\DbTable as AuthAdapter;
+
 // Configure the instance with constructor parameters...
-$authAdapter = new Zend\Authentication\Adapter\DbTable(
-    $dbAdapter,
-    'users',
-    'username',
-    'password'
-);
+$authAdapter = new AuthAdapter($dbAdapter,
+                               'users',
+                               'username',
+                               'password'
+                               );
 
 // ...or configure the instance with setter methods
-$authAdapter = new Zend\Authentication\Adapter\DbTable($dbAdapter);
+$authAdapter = new AuthAdapter($dbAdapter);
 
 $authAdapter
     ->setTableName('users')
@@ -236,7 +239,7 @@ if ($result->isValid()) {
         
 
         <para>
-            While the primary purpose of <classname>Zend\Authentication</classname> (and consequently
+            While the primary purpose of the <classname>Zend\Authentication</classname> component (and consequently
             <classname>Zend\Authentication\Adapter\DbTable</classname>) is primarily
             <emphasis>authentication</emphasis> and not
             <emphasis>authorization</emphasis>, there are a few
@@ -253,22 +256,23 @@ if ($result->isValid()) {
         </para>
 
         <programlisting language="php"><![CDATA[
+use Zend\Authentication\Adapter\DbTable as AuthAdapter;
+
 // The status field value of an account is not equal to "compromised"
-$adapter = new Zend\Authentication\Adapter\DbTable(
-    $db,
-    'users',
-    'username',
-    'password',
-    'MD5(?) AND status != "compromised"'
-);
+$adapter = new AuthAdapter($db,
+                           'users',
+                           'username',
+                           'password',
+                           'MD5(?) AND status != "compromised"'
+                           );
 
 // The active field value of an account is equal to "TRUE"
-$adapter = new Zend\Authentication\Adapter\DbTable(
-    $db,
-    'users',
-    'username',
-    'password',
-    'MD5(?) AND active = "TRUE"'
+$adapter = new AuthAdapter($db,
+                           'users',
+                           'username',
+                           'password',
+                           'MD5(?) AND active = "TRUE"'
+                           );
 ]]></programlisting>
 
         <para>
@@ -304,15 +308,14 @@ for ($i = 0; $i < 50; $i++) {
         </para>
 
         <programlisting language="php"><![CDATA[
-$adapter = new Zend\Authentication\Adapter\DbTable(
-    $db,
-    'users',
-    'username',
-    'password',
-    "MD5(CONCAT('"
-    . Zend\Registry::get('staticSalt')
-    . "', ?, password_salt))"
-);
+$adapter = new AuthAdapter($db,
+                           'users',
+                           'username',
+                           'password',
+                           "MD5(CONCAT('"
+                                . Zend\Registry::get('staticSalt')
+                                . "', ?, password_salt))"
+                          );
 ]]></programlisting>
 
         <note>
@@ -344,13 +347,12 @@ $adapter = new Zend\Authentication\Adapter\DbTable(
 
         <programlisting language="php"><![CDATA[
 // Continuing with the example from above
-$adapter = new Zend\Authentication\Adapter\DbTable(
-    $db,
-    'users',
-    'username',
-    'password',
-    'MD5(?)'
-);
+$adapter = new AuthAdapter($db,
+                           'users',
+                           'username',
+                           'password',
+                           'MD5(?)'
+                           );
 
 // get select object (by reference)
 $select = $adapter->getDbSelect();

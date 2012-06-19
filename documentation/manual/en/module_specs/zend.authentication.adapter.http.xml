@@ -160,6 +160,26 @@
                             below.
                         </entry>
                     </row>
+                    
+                    <row>
+                        <entry><emphasis><property>use_opaque</property></emphasis></entry>
+
+                        <entry>No</entry>
+
+                        <entry>
+                            Specifies whether to send the opaque value in the header. True by default.
+                        </entry>
+                    </row>
+                    
+                    <row>
+                        <entry><emphasis><property>algorithm</property></emphasis></entry>
+
+                        <entry>No</entry>
+
+                        <entry>
+                            Specified the algorithm. Defaults to MD5, the only supported option (for now).
+                        </entry>
+                    </row>
 
                     <row>
                         <entry><emphasis><property>proxy_auth</property></emphasis></entry>
@@ -234,8 +254,9 @@
             </para>
 
             <programlisting language="php"><![CDATA[
+use Zend\Authentication\Adapter\Http\FileResolver;
 $path     = 'files/passwd.txt';
-$resolver = new Zend\Authentication\Adapter\Http\FileResolver($path);
+$resolver = new FileResolver($path);
 ]]></programlisting>
 
             <para>
@@ -244,7 +265,7 @@ $resolver = new Zend\Authentication\Adapter\Http\FileResolver($path);
 
             <programlisting language="php"><![CDATA[
 $path     = 'files/passwd.txt';
-$resolver = new Zend\Authentication\Adapter\Http\FileResolver();
+$resolver = new FileResolver();
 $resolver->setFile($path);
 ]]></programlisting>
 
@@ -292,10 +313,12 @@ $adapter = new Zend\Authentication\Adapter\Http($config);
         </para>
 
         <programlisting language="php"><![CDATA[
-$basicResolver = new Zend\Authentication\Adapter\Http\FileResolver();
+use Zend\Authentication\Adapter\Http\FileResolver;
+
+$basicResolver = new FileResolver();
 $basicResolver->setFile('files/basicPasswd.txt');
 
-$digestResolver = new Zend\Authentication\Adapter\Http\FileResolver();
+$digestResolver = new FileResolver();
 $digestResolver->setFile('files/digestPasswd.txt');
 
 $adapter->setBasicResolver($basicResolver);

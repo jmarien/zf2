@@ -100,10 +100,12 @@ someUser:Some Realm:fde17b91c3a510ecbaf7dbd37f59d4f8
         </para>
 
         <programlisting language="php"><![CDATA[
-$adapter = new Zend\Authentication\Adapter\Digest($filename,
-                                        $realm,
-                                        $username,
-                                        $password);
+use Zend\Authentication\Adapter\Digest as AuthAdapter;
+
+$adapter = new AuthAdapter($filename,
+                           $realm,
+                           $username,
+                           $password);
 
 $result = $adapter->authenticate();
 

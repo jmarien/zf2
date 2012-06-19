@@ -3,7 +3,7 @@
     
 
     <para>
-        <classname>Zend\Authentication</classname> provides an <acronym>API</acronym> for authentication and
+        The <classname>Zend\Authentication</classname> component provides an <acronym>API</acronym> for authentication and
         includes concrete authentication adapters for common use case scenarios.
     </para>
 
@@ -14,14 +14,15 @@
         based on some set of credentials. Authorization, the process of deciding whether to allow
         an entity access to, or to perform operations upon, other entities is outside the scope of
         <classname>Zend\Authentication</classname>. For more information about authorization and access
-        control with Zend Framework, please see <link linkend="zend.acl"><classname>Zend\Acl</classname></link>.
+        control with Zend Framework, please see the <link linkend="zend.acl"><classname>Zend\Acl</classname></link> component.
     </para>
 
     <note>
         <para>
         There is no <classname>Zend\Authentication\Authentication</classname> class, instead the class 
-        <classname>Zend\Authentication\AuthenticationService</classname> is there to work with underlying authentication adapters and persistent storage.
-        <para>
+        <classname>Zend\Authentication\AuthenticationService</classname> is provided. 
+        This class uses underlying authentication adapters and persistent storage backends.
+        </para>
     </note>
 
     <section xml:id="zend.authentication.introduction.adapters"><title>Adapters</title>
@@ -55,7 +56,9 @@
         </para>
 
         <programlisting language="php"><![CDATA[
-class My\Auth\Adapter implements Zend\Authentication\Adapter\AdapterInterface
+use Zend\Authentication\Adapter\AdapterInterface;
+        
+class My\Auth\Adapter implements AdapterInterface
 {
     /**
      * Sets username and password for authentication
@@ -150,12 +153,14 @@ class My\Auth\Adapter implements Zend\Authentication\Adapter\AdapterInterface
         </para>
 
         <programlisting language="php"><![CDATA[
-Zend\Authentication\Result::SUCCESS
-Zend\Authentication\Result::FAILURE
-Zend\Authentication\Result::FAILURE_IDENTITY_NOT_FOUND
-Zend\Authentication\Result::FAILURE_IDENTITY_AMBIGUOUS
-Zend\Authentication\Result::FAILURE_CREDENTIAL_INVALID
-Zend\Authentication\Result::FAILURE_UNCATEGORIZED
+use Zend\Authentication\Result;
+
+Result::SUCCESS
+Result::FAILURE
+Result::FAILURE_IDENTITY_NOT_FOUND
+Result::FAILURE_IDENTITY_AMBIGUOUS
+Result::FAILURE_CREDENTIAL_INVALID
+Result::FAILURE_UNCATEGORIZED
 ]]></programlisting>
 
         <para>
@@ -244,11 +249,13 @@ switch ($result->getCode()) {
                 </para>
 
                 <programlisting language="php"><![CDATA[
-// Save a reference to the Singleton instance of Zend_Auth
-$auth = new Zend\Authentication\AuthenticationService();
+use Zend\Authentication\AuthenticationService,
+    Zend\Authentication\Storage\Session as SessionStorage;
+
+$auth = new AuthenticationService();
 
 // Use 'someNamespace' instead of 'Zend_Auth'
-$auth->setStorage(new Zend\Authentication\Storage\Session('someNamespace'));
+$auth->setStorage(new SessionStorage('someNamespace'));
 
 /**
  * @todo Set up the auth adapter, $authAdapter
@@ -264,7 +271,7 @@ $result = $auth->authenticate($authAdapter);
         <section xml:id="zend.authentication.introduction.persistence.custom"><title>Implementing Customized Storage</title>
             
 
-            <para>@todo - zit hier
+            <para>
                 Sometimes developers may need to use a different identity storage mechanism than
                 that provided by <classname>Zend\Authentication\Storage\Session</classname>. For such cases
                 developers may simply implement <classname>Zend\Authentication\Storage\StorageInterface</classname>
@@ -282,7 +289,9 @@ $result = $auth->authenticate($authAdapter);
                 </para>
 
                 <programlisting language="php"><![CDATA[
-class My\Storage implements Zend\Authentication\Storage\StorageInterface
+use Zend\Authentication\Storage\StorageInterface;
+
+class My\Storage implements StorageInterface
 {
     /**
      * Returns true if and only if storage is empty
@@ -356,8 +365,11 @@ class My\Storage implements Zend\Authentication\Storage\StorageInterface
                 </para>
 
                 <programlisting language="php"><![CDATA[
-// Instruct Zend\Authentication\AuthenticationService to use the custom storage class
-$auth = new Zend\Authentication\AuthenticationService();
+use Zend\Authentication\AuthenticationService;
+
+// Instruct AuthenticationService to use the custom storage class
+$auth = new AuthenticationService();
+
 $auth->setStorage(new My\Storage());
 
 /**
@@ -399,8 +411,10 @@ $result = $auth->authenticate($authAdapter);
         </para>
 
         <programlisting language="php"><![CDATA[
+use Zend\Authentication\AuthenticationService;
+        
 // instantiate the authentication service
-$auth = new Zend\Authentication\AuthenticationService();
+$auth = new AuthenticationService();
 
 // Set up the authentication adapter
 $authAdapter = new My\Auth\Adapter($username, $password);
@@ -427,7 +441,9 @@ if (!$result->isValid()) {
         </para>
 
         <programlisting language="php"><![CDATA[
-$auth = new Zend\Authentication\AuthenticationService();
+use Zend\Authentication\AuthenticationService;
+
+$auth = new AuthenticationService();
 
 /**
  * @todo Set up the auth adapter, $authAdapter
