@@ -393,29 +393,28 @@
             <!--</xi:include>-->
         </chapter>
 
-        <!--<chapter xml:id="zend.barcode"><title>Zend_Barcode</title>-->
-            <!---->
-            <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_Barcode-Introduction.xml" parse="xml">-->
-                <!--<xi:fallback>-->
-                    <!--<xi:include href="../en/module_specs/Zend_Barcode-Introduction.xml" parse="xml"/>-->
-                <!--</xi:fallback>-->
-            <!--</xi:include>-->
-            <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_Barcode-Creation.xml" parse="xml">-->
-                <!--<xi:fallback>-->
-                    <!--<xi:include href="../en/module_specs/Zend_Barcode-Creation.xml" parse="xml"/>-->
-                <!--</xi:fallback>-->
-            <!--</xi:include>-->
-            <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_Barcode-Objects.xml" parse="xml">-->
-                <!--<xi:fallback>-->
-                    <!--<xi:include href="../en/module_specs/Zend_Barcode-Objects.xml" parse="xml"/>-->
-                <!--</xi:fallback>-->
-            <!--</xi:include>-->
-            <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_Barcode-Renderers.xml" parse="xml">-->
-                <!--<xi:fallback>-->
-                    <!--<xi:include href="../en/module_specs/Zend_Barcode-Renderers.xml" parse="xml"/>-->
-                <!--</xi:fallback>-->
-            <!--</xi:include>-->
-        <!--</chapter>-->
+        <chapter xml:id="zend.barcode"><title>Zend\Barcode</title>
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.barcode.intro.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/zend.barcode.intro.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.barcode.creation.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/zend.barcode.creation.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.barcode.objects.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/zend.barcode.objects.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.barcode.renderers.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/zend.barcode.renderers.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
+        </chapter>
 
         <chapter xml:id="zend.cache"><title>Zend\Cache</title>
 
@@ -476,24 +475,23 @@
             <!--</xi:include>-->
         </chapter>
 
-        <!--<chapter xml:id="zend.captcha"><title>Zend_Captcha</title>-->
-            <!---->
-            <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_Captcha.xml" parse="xml">-->
-                <!--<xi:fallback>-->
-                    <!--<xi:include href="../en/module_specs/Zend_Captcha.xml" parse="xml"/>-->
-                <!--</xi:fallback>-->
-            <!--</xi:include>-->
-            <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_Captcha-Operation.xml" parse="xml">-->
-                <!--<xi:fallback>-->
-                    <!--<xi:include href="../en/module_specs/Zend_Captcha-Operation.xml" parse="xml"/>-->
-                <!--</xi:fallback>-->
-            <!--</xi:include>-->
-            <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_Captcha-Adapters.xml" parse="xml">-->
-                <!--<xi:fallback>-->
-                    <!--<xi:include href="../en/module_specs/Zend_Captcha-Adapters.xml" parse="xml"/>-->
-                <!--</xi:fallback>-->
-            <!--</xi:include>-->
-        <!--</chapter>-->
+        <chapter xml:id="zend.captcha"><title>Zend\Captcha</title>
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.captcha.intro.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/zend.captcha.intro.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.captcha.operation.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/zend.captcha.operation.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.captcha.adapters.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/zend.captcha.adapters.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
+        </chapter>
 
         <!--<chapter xml:id="zend.cloud">-->
             <!--<title>Zend_Cloud</title>-->
@@ -1122,6 +1120,14 @@
                 </xi:fallback>
             </xi:include>
 
+        </chapter>
+
+        <chapter xml:id="zend.i18n"><title>Zend_I18n</title>
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_I18n-Translating.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/Zend_I18n-Translating.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
         </chapter>
 
         <!--<chapter xml:id="zend.infocard"><title>Zend_InfoCard</title>-->
@@ -2369,34 +2375,35 @@
             </xi:include>
         </chapter>
 
-        <!--<chapter xml:id="zend.validate"><title>Zend_Validate</title>-->
-            <!---->
-            <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_Validate.xml" parse="xml">-->
-                <!--<xi:fallback>-->
-                    <!--<xi:include href="../en/module_specs/Zend_Validate.xml" parse="xml"/>-->
-                <!--</xi:fallback>-->
-            <!--</xi:include>-->
-            <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_Validate-Set.xml" parse="xml">-->
-                <!--<xi:fallback>-->
-                    <!--<xi:include href="../en/module_specs/Zend_Validate-Set.xml" parse="xml"/>-->
-                <!--</xi:fallback>-->
-            <!--</xi:include>-->
-            <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_Validate-ValidatorChains.xml" parse="xml">-->
-                <!--<xi:fallback>-->
-                    <!--<xi:include href="../en/module_specs/Zend_Validate-ValidatorChains.xml" parse="xml"/>-->
-                <!--</xi:fallback>-->
-            <!--</xi:include>-->
-            <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_Validate-WritingValidators.xml" parse="xml">-->
-                <!--<xi:fallback>-->
-                    <!--<xi:include href="../en/module_specs/Zend_Validate-WritingValidators.xml" parse="xml"/>-->
-                <!--</xi:fallback>-->
-            <!--</xi:include>-->
-            <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_Validate-Messages.xml" parse="xml">-->
-                <!--<xi:fallback>-->
-                    <!--<xi:include href="../en/module_specs/Zend_Validate-Messages.xml" parse="xml"/>-->
-                <!--</xi:fallback>-->
-            <!--</xi:include>-->
-        <!--</chapter>-->
+        <chapter xml:id="zend.validator">
+            <title>Zend\Validator</title>
+            
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.validator.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/zend.validator.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.validator.set.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/zend.validator.set.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.validator.validatorChains.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/zend.validator.validatorChains.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.validator.writingValidators.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/zend.validator.writingValidators.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.validator.messages.xml" parse="xml">
+                <xi:fallback>
+                    <xi:include href="../en/module_specs/zend.validator.messages.xml" parse="xml"/>
+                </xi:fallback>
+            </xi:include>
+        </chapter>
 
         <!--<chapter xml:id="zend.version"><title>Zend_Version</title>-->
             <!---->
@@ -2445,19 +2452,19 @@
         <!--</chapter>-->
 
         <chapter xml:id="zend.xmlrpc"><title>Zend_XmlRpc</title>
-            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_XmlRpc.xml" parse="xml">
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.xmlrpc.xml" parse="xml">
                 <xi:fallback>
-                    <xi:include href="../en/module_specs/Zend_XmlRpc.xml" parse="xml"/>
+                    <xi:include href="../en/module_specs/zend.xmlrpc.xml" parse="xml"/>
                 </xi:fallback>
             </xi:include>
-            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_XmlRpc_Client.xml" parse="xml">
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.xmlrpc.client.xml" parse="xml">
                 <xi:fallback>
-                    <xi:include href="../en/module_specs/Zend_XmlRpc_Client.xml" parse="xml"/>
+                    <xi:include href="../en/module_specs/zend.xmlrpc.client.xml" parse="xml"/>
                 </xi:fallback>
             </xi:include>
-            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/Zend_XmlRpc_Server.xml" parse="xml">
+            <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module_specs/zend.xmlrpc.server.xml" parse="xml">
                 <xi:fallback>
-                    <xi:include href="../en/module_specs/Zend_XmlRpc_Server.xml" parse="xml"/>
+                    <xi:include href="../en/module_specs/zend.xmlrpc.server.xml" parse="xml"/>
                 </xi:fallback>
             </xi:include>
         </chapter>

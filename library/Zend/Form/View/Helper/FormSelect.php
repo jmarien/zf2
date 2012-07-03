@@ -44,8 +44,13 @@ class FormSelect extends AbstractHelper
     protected $validTagAttributes;
 
     protected $validSelectAttributes = array(
-        'name'     => true,
-        'multiple' => true,
+        'name'      => true,
+        'autofocus' => true,
+        'disabled'  => true,
+        'form'      => true,
+        'multiple'  => true,
+        'required'  => true,
+        'size'      => true
     );
 
     protected $validOptionAttributes = array(
@@ -140,7 +145,7 @@ class FormSelect extends AbstractHelper
             $selected = false;
             $disabled = false;
 
-            if (is_string($optionSpec)) {
+            if (is_scalar($optionSpec)) {
                 $optionSpec = array(
                     'label' => $key,
                     'value' => $optionSpec,
@@ -165,7 +170,7 @@ class FormSelect extends AbstractHelper
                 $disabled = $optionSpec['disabled'];
             }
 
-            if (in_array($value, $selectedOptions, true)) {
+            if (in_array($value, $selectedOptions)) {
                 $selected = true;
             }
 
@@ -221,7 +226,7 @@ class FormSelect extends AbstractHelper
      * Proxies to {@link render()}.
      *
      * @param  ElementInterface|null $element
-     * @return string
+     * @return string|FormSelect
      */
     public function __invoke(ElementInterface $element = null)
     {

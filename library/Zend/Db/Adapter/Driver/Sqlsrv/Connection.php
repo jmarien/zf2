@@ -92,21 +92,11 @@ class Connection implements ConnectionInterface
     }
 
     /**
-     * Get default catalog
-     *
-     * @return null
-     */
-    public function getDefaultCatalog()
-    {
-        return null;
-    }
-
-    /**
-     * Get dafault schema
+     * Get current schema
      *
      * @return string
      */
-    public function getDefaultSchema()
+    public function getCurrentSchema()
     {
         if (!$this->isConnected()) {
             $this->connect();
@@ -312,7 +302,7 @@ class Connection implements ConnectionInterface
      *
      * @return mixed
      */
-    public function getLastGeneratedValue()
+    public function getLastGeneratedValue($name = null)
     {
         $sql = 'SELECT @@IDENTITY as Current_Identity';
         $result = sqlsrv_query($this->resource, $sql);

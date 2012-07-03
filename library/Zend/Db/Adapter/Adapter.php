@@ -135,9 +135,9 @@ class Adapter
         return $this->platform;
     }
 
-    public function getDefaultSchema()
+    public function getCurrentSchema()
     {
-        return $this->driver->getConnection()->getDefaultSchema();
+        return $this->driver->getConnection()->getCurrentSchema();
     }
 
     /**
@@ -244,13 +244,22 @@ class Adapter
             throw new Exception\InvalidArgumentException('createDriverFromParameters() expects a "driver" key to be present inside the parameters');
         }
 
+        $options = array();
+        if (isset($parameters['options'])) {
+            $options = (array) $parameters['options'];
+            unset($parameters['options']);
+        }
+
         $driverName = strtolower($parameters['driver']);
         switch ($driverName) {
             case 'mysqli':
-                $driver = new Driver\Mysqli\Mysqli($parameters);
+                $driver = new Driver\Mysqli\Mysqli($parameters, null, null, $options);
                 break;
             case 'sqlsrv':
                 $driver = new Driver\Sqlsrv\Sqlsrv($parameters);
+                break;
+            case 'pgsql':
+                $driver = new Driver\Pgsql\Pgsql($parameters);
                 break;
             case 'pdo':
             default:

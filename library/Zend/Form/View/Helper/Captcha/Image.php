@@ -23,7 +23,7 @@ namespace Zend\Form\View\Helper\Captcha;
 
 use Zend\Captcha\Image as CaptchaAdapter;
 use Zend\Form\ElementInterface;
-use Zend\FOrm\Exception;
+use Zend\Form\Exception;
 
 /**
  * @category   Zend
@@ -42,17 +42,15 @@ class Image extends AbstractWord
      */
     public function render(ElementInterface $element)
     {
-        $attributes = $element->getAttributes();
+        $captcha = $element->getCaptcha();
 
-        if (!isset($attributes['captcha'])
-            || !$attributes['captcha'] instanceof CaptchaAdapter
-        ) {
+        if ($captcha === null || !$captcha instanceof CaptchaAdapter) {
             throw new Exception\DomainException(sprintf(
                 '%s requires that the element has a "captcha" attribute of type Zend\Captcha\Image; none found',
                 __METHOD__
             ));
         }
-        $captcha = $attributes['captcha'];
+
         $captcha->generate();
 
         $imgAttributes = array(

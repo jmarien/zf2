@@ -21,9 +21,9 @@
 
 namespace Zend\Validator;
 
-use Traversable,
-    Zend\Stdlib\ArrayUtils,
-    Zend\Session\Container as SessionContainer;
+use Traversable;
+use Zend\Stdlib\ArrayUtils;
+use Zend\Session\Container as SessionContainer;
 
 class Csrf extends AbstractValidator
 {
@@ -37,7 +37,7 @@ class Csrf extends AbstractValidator
      * Error messages
      * @var array
      */
-    protected $_messageTemplates = array(
+    protected $messageTemplates = array(
         self::NOT_SAME => "The form submitted did not originate from the expected site",
     );
 
@@ -82,8 +82,7 @@ class Csrf extends AbstractValidator
     /**
      * Constructor
      *
-     * @param  array $options
-     * @return void
+     * @param  array|Traversable $options
      */
     public function __construct($options = array())
     {
@@ -112,7 +111,7 @@ class Csrf extends AbstractValidator
                     $this->setTimeout($value);
                     break;
                 default:
-                    // ignore uknown options
+                    // ignore unknown options
                     break;
             }
         }
@@ -216,14 +215,23 @@ class Csrf extends AbstractValidator
     /**
      * Retrieve CSRF token
      *
-     * If no CSRF token currently exists, generates one.
+     * If no CSRF token currently exists, or should be regenrated, 
+     * generates one.
      *
+     * @param  bool $regenerate    default false
      * @return string
      */
-    public function getHash()
+    public function getHash($regenerate = false)
     {
-        if (null === $this->hash) {
-            $this->generateHash();
+        if ((null === $this->hash) || $regenerate) {
+            if ($regenerate) {
+                $this->hash = null;
+            } else {
+                $this->hash = $this->getValidationToken();
+            }
+            if (null === $this->hash) {
+                $this->generateHash();
+            }
         }
         return $this->hash;
     }
@@ -267,10 +275,10 @@ class Csrf extends AbstractValidator
      *
      * @return void
      */
-    public function initCsrfToken()
+    protected function initCsrfToken()
     {
         $session = $this->getSession();
-        $session->setExpirationHops(1, null, true);
+        //$session->setExpirationHops(1, null, true);
         $session->setExpirationSeconds($this->getTimeout());
         $session->hash = $this->getHash();
     }
